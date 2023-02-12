@@ -5,11 +5,14 @@ import java.io. *;
 public class Menu {
   
   // Home Method
-static void Home () {
+static void Home () throws IOException {
     BufferedReader input = new BufferedReader   // Input Scanner
         (new InputStreamReader(System.in));
   
   int reply;
+  
+  globalData.database [0][0] = "Dion";
+  System.out.println(globalData.database[0][0]);
   
   System.out.println("\t ||| Welcome to Hotel Trivaho ||| ");
   System.out.println("\t |||  Please enjoy your stay! ||| ");  
@@ -51,8 +54,10 @@ static void Home () {
   // Main Method
     public static void main(String[] args) throws IOException {
       
-      String[][] database = {};
-      
+      class globalData {
+      public static String[][] database = new String [30][7];
+      }
+        
         Home();
   
 }
