@@ -34,7 +34,7 @@ public static void main(String[] args) throws Exception {
       viewavailroom();
       break:
     case 5:
-      exit();
+      exit(1);
       break:
   }
   
