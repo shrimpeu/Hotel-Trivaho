@@ -4,7 +4,7 @@ import java.io. *;
 
 public class Menu {
   
-  // Test Method
+  // Home Method
 static void Home () {
     BufferedReader input = new BufferedReader   // Input Scanner
         (new InputStreamReader(System.in));
@@ -48,6 +48,7 @@ static void Home () {
  }
       
 }
+  // Main Method
     public static void main(String[] args) throws IOException {
         Home();
   
