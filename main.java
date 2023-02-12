@@ -30,18 +30,19 @@ public static void main(String[] args) throws Exception {
       break;
     case 2:
       Client();
-      break:
+      break;
     case 3:
       Log();
-      break:
+      break;
     case 4:
       Reservation();
-      break:
+      break;
     case 5:
       Rooms();
+      break;
     case 6:
       exit(1);
-      break:
+      break;
   }
   
   
