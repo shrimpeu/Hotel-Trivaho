@@ -50,6 +50,9 @@ static void Home () {
 }
   // Main Method
     public static void main(String[] args) throws IOException {
+      
+      String[][] database = {};
+      
         Home();
   
 }
