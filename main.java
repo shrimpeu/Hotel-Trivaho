@@ -2,7 +2,11 @@ package HotelManagement;
 
 import java.io. *;
 
-public class Menu {
+public class main {
+  
+  class globalData {
+   public static String[][] database = new String [30][7];
+  }
   
   // Home Method
 static void Home () throws IOException {
@@ -49,15 +53,18 @@ static void Home () throws IOException {
       break;
    }
  }
-      
+
+static void Dashboard () throws IOException {
+  // for (int i = 0; i <
+  // System.out.println("Available Rooms: ")
+
+}
+  
+ 
 }
   // Main Method
-    public static void main(String[] args) throws IOException {
-      
-      class globalData {
-      public static String[][] database = new String [30][7];
-      }
-        
+    public static void Main(String[] args) throws IOException {
+
         Home();
   
 }
