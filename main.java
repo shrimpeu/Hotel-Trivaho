@@ -10,30 +10,36 @@ public static void main(String[] args) throws Exception {
   
   char reply;
   
+  System.out.println("\t ||| Welcome to Hotel Trivaho ||| ");
+  System.out.println("\t |||  Please enjoy your stay! ||| ");  
+    
   // Menu
-  System.out.println("[1] Book Reservation");
-  System.out.println("[2] Cancel Reservation");
-  System.out.println("[3] View Reservations");
-  System.out.println("[4] View Available Rooms");
-  System.out.println("[5] Exit");
+  System.out.println("[1] Dashboard ");
+  System.out.println("[2] Clieht ");
+  System.out.println("[3] Log ");
+  System.out.println("[4] Reservations ");
+  System.out.println("[5] Rooms ");
+  System.out.println("[6] Exit");
   
   System.out.println("Enter choice: ");
   reply = input.readLine();
   
   switch(reply){
     case 1:
-      bookreservation();
+      Dashboard();
       break;
     case 2:
-      cancelreservation();
+      Client();
       break:
     case 3:
-      viewreservation();
+      Log();
       break:
     case 4:
-      viewavailroom();
+      Reservation();
       break:
     case 5:
+      Rooms();
+    case 6:
       exit(1);
       break:
   }
