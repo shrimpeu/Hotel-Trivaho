@@ -8,7 +8,7 @@ public static void main(String[] args) throws Exception {
   BufferedReader input = new BufferedReader   // Input Scanner
         (new InputStreamReader(System.in));
   
-  char reply;
+  int reply;
   
   System.out.println("\t ||| Welcome to Hotel Trivaho ||| ");
   System.out.println("\t |||  Please enjoy your stay! ||| ");  
@@ -22,7 +22,7 @@ public static void main(String[] args) throws Exception {
   System.out.println("[6] Exit");
   
   System.out.println("Enter choice: ");
-  reply = input.readLine();
+  reply = Integer.parseInt(input.readLine());
   
   switch(reply){
     case 1:
