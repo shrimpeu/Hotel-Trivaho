@@ -1,2 +1,2 @@
 # Hotel-Trivaho
-A Hotel chuchuchu
+A Hotel Reservation Management System Using Java
