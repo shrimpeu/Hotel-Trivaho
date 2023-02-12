@@ -3,9 +3,10 @@ package HotelManagement;
 import java.io. *;
 
 public class Menu {
-    
-public static void main(String[] args) throws Exception {
-  BufferedReader input = new BufferedReader   // Input Scanner
+  
+  // Test Method
+static void Home () {
+    BufferedReader input = new BufferedReader   // Input Scanner
         (new InputStreamReader(System.in));
   
   int reply;
@@ -26,26 +27,28 @@ public static void main(String[] args) throws Exception {
   
   switch(reply){
     case 1:
-      Dashboard();
+      // Dashboard();
       break;
     case 2:
-      Client();
+     //  Client();
       break;
     case 3:
-      Log();
+      // Log();
       break;
     case 4:
-      Reservation();
+      // Reservation();
       break;
     case 5:
-      Rooms();
+      // Rooms();
       break;
     case 6:
-      exit(1);
+      // return 0;
       break;
-  }
-  
-  
+   }
+ }
+      
 }
+    public static void main(String[] args) throws IOException {
+        Home();
   
 }
