@@ -74,7 +74,7 @@ static void Dashboard() throws NumberFormatException, IOException {
 static void Client() throws NumberFormatException, IOException {	
 	System.out.println("[1] Add Reservation");
 	System.out.println("[2] Cancel Reservation");
-	System.out.println("[3] Return ");
+	System.out.println("[3] Go Back ");
 	
 	System.out.print("Enter choice: ");
 	BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
@@ -120,12 +120,45 @@ static void Rooms() throws NumberFormatException, IOException {
 }
 
 static void AddReservation() throws NumberFormatException, IOException{
-	System.out.println("Add Reservation");
-	System.out.println("Add Reservation");
-	System.out.println("Add Reservation");
-	System.out.println("Add Reservation");
-	System.out.println("Add Reservation");
+	Scanner s = new Scanner(System.in);
+	
+	System.out.print("Enter Name: ");
+	String Name = s.nextLine();	
+	System.out.print("Enter Number of Guests: ");
+	String GuestNum = s.nextLine();	
+	System.out.print("Enter Room No.: ");
+	String RoomNum = s.nextLine();	
+	System.out.print("Enter Date In: ");
+	String DateIn = s.nextLine();	
+	System.out.print("Enter Duration: ");
+	String Duration = s.nextLine();
+	
+	String Floor = "";
+	String RoomType = "";
+	
+	int RoomNumInt = Integer.parseInt(RoomNum);
+	if (RoomNumInt >= 1 && RoomNumInt <= 10) {
+		Floor = "1";
+		RoomType = "Lower-Class";
+	}
+	else if (RoomNumInt >= 11 && RoomNumInt <= 20) {
+		Floor = "2";
+		RoomType = "Middle-Class";
+	}
+	else if (RoomNumInt >= 21 && RoomNumInt <= 30) {
+		Floor = "3";
+		RoomType = "Upper-Class";
+	}
+	
+	System.out.println("Name: "+Name);
+	System.out.println("No. of Guests: "+GuestNum);
+	System.out.println("Room No.: "+RoomNum);
+	System.out.println("Room Type: "+RoomType);
+	System.out.println("Floor: "+Floor);
+	System.out.println("Date In: "+DateIn);
+	System.out.println("Duration (Days): "+Duration);	
 }
+
 
 static void CancelReservation() throws NumberFormatException, IOException{
 	System.out.println("Cancel Reservation");
