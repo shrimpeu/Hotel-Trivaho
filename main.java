@@ -178,6 +178,6 @@ static void CancelReservation() throws NumberFormatException, IOException{
 }
 
 public static void main(String[] args) throws Exception {
-	  Home();  
-	  }
+	Home();
+	}
 }
