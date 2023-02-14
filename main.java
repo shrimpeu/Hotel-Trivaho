@@ -119,12 +119,10 @@ static void Rooms() throws NumberFormatException, IOException {
 
 static void AddReservation() throws NumberFormatException, IOException{
 	Scanner s = new Scanner(System.in);
-	
 	String Name, GuestNum, RoomNum, DateIn, Duration;
-	
-	
-	boolean bool = true;
-	while(bool == true) {
+
+	outerloop:
+	while(true) {
 	System.out.print("Enter Name: ");
     Name = s.nextLine();	
 	System.out.print("Enter Number of Guests: ");
@@ -135,19 +133,18 @@ static void AddReservation() throws NumberFormatException, IOException{
 	DateIn = s.nextLine();	
 	System.out.print("Enter Duration (Days): ");
 	Duration = s.nextLine();
-	
-	
 	for(int i = 0; i < globalData.counter; i++) {
-	if(RoomNum == globalData.database[i][2]) {
-		System.out.print("Room Already Reserved!");
+		int temp1 = Integer.parseInt(RoomNum);
+		int temp2 = Integer.parseInt(globalData.database[i][2]);
+		if(temp1 == temp2) {
+			System.out.print("Room Already Reserved!");
+			System.out.println("");
+			System.out.println("");
+			continue outerloop;	
+		}
 	}
-	
-	else {
-		bool = false;
+	break;
 	}
-	
-	}
-	
 	
 	System.out.println(new String(new char[70]).replace("\0", "\r\n"));
 	System.out.println("-----Output-----");
@@ -223,9 +220,8 @@ static void Confirm(String Name, String GuestNum, String RoomNum, String DateIn,
 	globalData.database[globalData.counter][5] = DateIn;
 	globalData.database[globalData.counter][6] = Duration;
 	globalData.database[globalData.counter][7] = Cost;
-	
-	System.out.println(globalData.database[globalData.counter][0]);
-	
+	//System.out.println(globalData.database[globalData.counter][0]);
+	globalData.counter++;
 	try {
 		System.out.print("Press Enter to continue...");
 		BufferedReader input1 = new BufferedReader(new InputStreamReader(System.in));
@@ -233,42 +229,60 @@ static void Confirm(String Name, String GuestNum, String RoomNum, String DateIn,
 		reply = Integer.parseInt(input1.readLine());
 	}
 	catch(NumberFormatException e) {
-		globalData.counter++;
 		System.out.println(new String(new char[70]).replace("\0", "\r\n"));
 		Client();
-		
 	}
 	
 	
 
 }
 
+
 static void CancelReservation() throws NumberFormatException, IOException{
 	System.out.println("----- Cancel Reservation ----");
-	System.out.println("Cancel Reservation");
 	
+	System.out.println("[1] View Reservations");
+	System.out.println("[2] Go Back");
 	System.out.print("Enter choice: ");
 	BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
 	int reply;
 	reply = Integer.parseInt(input.readLine());
+	
 	switch(reply){
 	case 1:
 		System.out.println(new String(new char[70]).replace("\0", "\r\n"));
-		AddReservation();
+		ViewReservations();
 		break;
 	case 2:
 		System.out.println(new String(new char[70]).replace("\0", "\r\n"));
-		CancelReservation();
-		break;
-	case 3:
-		System.out.println(new String(new char[70]).replace("\0", "\r\n"));
-		Home();
+		Client();
 		break;
 	}
 }
+
+static void ViewReservations() throws NumberFormatException, IOException{
+	for(int i = 0; i < globalData.counter;i++) {
+		System.out.println("Room: "+globalData.database[i][2]+"\t"+"Name: "+globalData.database[i][0]);
+		System.out.println("");
+	}
+	
+	System.out.print("Room Reservation to Cancel/Remove: ");
+	BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
+	int reply;
+	reply = Integer.parseInt(input.readLine());
+	for(int i = 0; i < globalData.counter; i++) {
+		int temp3 = Integer.parseInt(globalData.database[i][2]);
+		if(reply == temp3) {
+			for(int j = 0; j<8; j++) {
+				globalData.database[i][j] = "";
+			}
+		}
+	}
+	CancelReservation();
+}
+
 
 public static void main(String[] args) throws Exception {
 	  Home();  
 	  }
 }
-
