@@ -130,23 +130,42 @@ static void AddReservation() throws NumberFormatException, IOException{
 	System.out.print("Enter Duration: ");
 	String Duration = s.nextLine();
 	
-	
+	String Floor = "";
+	String RoomType = "";
+	String Cost = "";
+	int RoomNumInt = Integer.parseInt(RoomNum);
+	if (RoomNumInt >= 1 && RoomNumInt <= 10) {
+		Floor = "1";
+		RoomType = "Lower-Class";
+		Cost = "5000";
+	}
+	else if (RoomNumInt >= 11 && RoomNumInt <= 20) {
+		Floor = "2";
+		RoomType = "Middle-Class";
+		Cost = "7500";
+	}
+	else if (RoomNumInt >= 21 && RoomNumInt <= 30) {
+		Floor = "3";
+		RoomType = "Upper-Class";
+		Cost = "10000";
+	}
 	
 	System.out.println(new String(new char[70]).replace("\0", "\r\n"));
 	System.out.println("-----Bill Information-----");
 	System.out.println("Name: "+Name);
 	System.out.println("No. of Guests: "+GuestNum);
 	System.out.println("Room No.: "+RoomNum);
-	//System.out.println("Room Type: "+RoomType);
-	//System.out.println("Floor: "+Floor);
+	System.out.println("Room Type: "+RoomType);
+	System.out.println("Floor: "+Floor);
 	System.out.println("Date In: "+DateIn);
 	System.out.println("Duration (Days): "+Duration);
-	//System.out.println("Amount: "+Cost);
+	System.out.println("Amount: "+Cost);
 	
 	System.out.println("Submission: ");
 	System.out.println("[1] Confirm");
 	System.out.println("[2] Reset");
 	System.out.println("[3] Cancel");
+	System.out.print("Enter choice: ");
 	BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
 	int reply;
 	reply = Integer.parseInt(input.readLine());
@@ -167,29 +186,6 @@ static void AddReservation() throws NumberFormatException, IOException{
 }
 
 static void Confirm(String Name, String GuestNum, String RoomNum, String DateIn, String Duration) throws NumberFormatException, IOException{
-	
-	String Floor = "";
-	String RoomType = "";
-	String Cost = "";
-	int RoomNumInt = Integer.parseInt(RoomNum);
-	if (RoomNumInt >= 1 && RoomNumInt <= 10) {
-		Floor = "1";
-		RoomType = "Lower-Class";
-		Cost = "5000";
-	}
-	else if (RoomNumInt >= 11 && RoomNumInt <= 20) {
-		Floor = "2";
-		RoomType = "Middle-Class";
-		Cost = "7500";
-	}
-	else if (RoomNumInt >= 21 && RoomNumInt <= 30) {
-		Floor = "3";
-		RoomType = "Upper-Class";
-		Cost = "10000";
-	}
-}
-
-static void Clear() throws NumberFormatException, IOException{
 	
 }
 
