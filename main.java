@@ -1,4 +1,3 @@
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -9,21 +8,31 @@ public class main {
 class globalData {
 	public static String[][] database = new String [30][8];
 	public static int counter = 0;
+	public static int vacant = 30;
+	public static int reserved = 0;
 }
 	
 static void Home() throws NumberFormatException, IOException {
+	System.out.println(" ");
+	System.out.println("=================================================== ");
 	System.out.println("\t ||| Welcome to Hotel Trivaho ||| ");
 	System.out.println("\t |||  Please enjoy your stay! ||| ");  
-	
+	System.out.println("=================================================== ");
 	// Menu
+	System.out.println(" ");
 	System.out.println("[1] Dashboard ");
 	System.out.println("[2] Client ");
-	System.out.println("[3] Log ");
-	System.out.println("[4] Reservations ");
-	System.out.println("[5] Rooms ");
+	System.out.println("[3] Log");
+	//Name Date In
+	System.out.println("[4] Reservations");
+	//Room No., Type, Floor, Price
+	System.out.println("[5] Rooms");
+	//Information sa mga room
 	System.out.println("[6] Exit");
 	
+	System.out.println("__________________________________________________");
 	System.out.print("Enter choice: ");
+	
 	BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
 	int reply;
 	reply = Integer.parseInt(input.readLine());
@@ -60,11 +69,34 @@ static void Home() throws NumberFormatException, IOException {
 }
 	
 static void Dashboard() throws NumberFormatException, IOException {	
-	System.out.println("Dashboard");
-	System.out.println("Dashboard");
-	System.out.println("Dashboard");
-	System.out.println("Dashboard");
-	System.out.println("Dashboard");
+	System.out.println("=================================================== ");
+	System.out.println("\t\t||| Hotel Trivaho ||| ");
+	System.out.println("\t\t|||  Dash Board   ||| ");  
+	System.out.println("=================================================== ");
+	
+	int guest = 0;
+	for(int i = 0; i < globalData.counter;i++) {
+		guest += Integer.parseInt(globalData.database[i][1]);
+	}
+	
+	guest += globalData.reserved;
+	System.out.println(" ");
+	System.out.println("Total Number of Guests :  " + guest);
+	System.out.println("Total Room Available   :  " + globalData.vacant);
+	System.out.println("Total Room Reserved    :  " + globalData.reserved);
+	System.out.println(" ");
+	System.out.println("[0] Go Back");
+	System.out.println("__________________________________________________");
+	System.out.print("Enter Choice: ");
+	BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
+	int reply;
+	reply = Integer.parseInt(input.readLine());
+	switch(reply){
+	case 0:
+		System.out.println(new String(new char[70]).replace("\0", "\r\n"));
+		Home();
+		break;
+	}
 }
 
 static void Client() throws NumberFormatException, IOException {	
@@ -94,19 +126,49 @@ static void Client() throws NumberFormatException, IOException {
 }
 
 static void Log() throws NumberFormatException, IOException {	
-	System.out.println("Log");
-	System.out.println("Log");
-	System.out.println("Log");
-	System.out.println("Log");
-	System.out.println("Log");
+	System.out.println("----- Log -----");
+	System.out.println("Name \t\t\t Date In");
+	for(int i = 0; i < globalData.counter;i++) {
+		if(Integer.parseInt(globalData.database[i][2]) > 0) {
+			System.out.println(globalData.database[i][0] +"\t\t\t" +globalData.database[i][5]);
+		}
+
+	}
+
+	System.out.print("[0] Go Back: ");
+	BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
+	int reply;
+	reply = Integer.parseInt(input.readLine());
+	switch(reply){
+	case 0:
+		System.out.println(new String(new char[70]).replace("\0", "\r\n"));
+		Home();
+		break;
+	}
+	
 }
 
 static void Reservation() throws NumberFormatException, IOException {	
-	System.out.println("Reservation");
-	System.out.println("Reservation");
-	System.out.println("Reservation");
-	System.out.println("Reservation");
-	System.out.println("Reservation");
+	System.out.println("----- Reservation -----");
+	//Room No., Type, Floor, Price
+	System.out.println("Room No. \t\t Room Type \t\t Floor \t\t Price");
+	for(int i = 0; i < globalData.counter;i++) {
+		if(Integer.parseInt(globalData.database[i][2]) > 0) {
+			System.out.println(globalData.database[i][2] +"\t\t\t" + globalData.database[i][3] +" \t\t" + globalData.database[i][4] + " \t\t" + globalData.database[i][7]);
+		}
+
+	}
+
+	System.out.print("[0] Go Back: ");
+	BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
+	int reply;
+	reply = Integer.parseInt(input.readLine());
+	switch(reply){
+	case 0:
+		System.out.println(new String(new char[70]).replace("\0", "\r\n"));
+		Home();
+		break;
+	}
 }
 
 static void Rooms() throws NumberFormatException, IOException {	
@@ -125,7 +187,7 @@ static void AddReservation() throws NumberFormatException, IOException{
 	while(true) {
 	System.out.print("Enter Name: ");
     Name = s.nextLine();	
-	System.out.print("Enter Number of Guests: ");
+	System.out.print("Enter Number of Companion: ");
 	GuestNum = s.nextLine();	
 	System.out.print("Enter Room No.: ");
 	RoomNum = s.nextLine();	
@@ -149,7 +211,7 @@ static void AddReservation() throws NumberFormatException, IOException{
 	System.out.println(new String(new char[70]).replace("\0", "\r\n"));
 	System.out.println("-----Output-----");
 	System.out.println("Name: "+ Name);
-	System.out.println("No. of Guests: "+GuestNum);
+	System.out.println("No. of Companion: "+GuestNum);
 	System.out.println("Room No.: "+RoomNum);
 	System.out.println("Date In (MM/DD/YY): "+DateIn);
 	System.out.println("Duration (Days): "+Duration);
@@ -204,7 +266,7 @@ static void Confirm(String Name, String GuestNum, String RoomNum, String DateIn,
 	System.out.println(new String(new char[70]).replace("\0", "\r\n"));
 	System.out.println("-----Bill Information-----");
 	System.out.println("Name: "+Name);
-	System.out.println("No. of Guests: "+GuestNum);
+	System.out.println("No. of Companion: "+GuestNum);
 	System.out.println("Room No.: "+RoomNum);
 	System.out.println("Room Type: "+RoomType);
 	System.out.println("Floor: "+Floor);
@@ -222,6 +284,13 @@ static void Confirm(String Name, String GuestNum, String RoomNum, String DateIn,
 	globalData.database[globalData.counter][7] = Cost;
 	//System.out.println(globalData.database[globalData.counter][0]);
 	globalData.counter++;
+	globalData.vacant--;
+	globalData.reserved++;
+	
+	if(globalData.counter > 30) {
+		globalData.counter = 30;
+	}
+	
 	try {
 		System.out.print("Press Enter to continue...");
 		BufferedReader input1 = new BufferedReader(new InputStreamReader(System.in));
@@ -237,34 +306,40 @@ static void Confirm(String Name, String GuestNum, String RoomNum, String DateIn,
 
 }
 
-
 static void CancelReservation() throws NumberFormatException, IOException{
 	for(int i = 0; i < globalData.counter;i++) {
-		System.out.println("Room: "+globalData.database[i][2]+"\t"+"Name: "+globalData.database[i][0]);
-		System.out.println("");
+		if(Integer.parseInt(globalData.database[i][2]) > 0) {
+			System.out.println("Room: "+globalData.database[i][2]+"\t"+"Name: "+globalData.database[i][0]);
+			System.out.println("");
+		}
+
 	}
 	
-	System.out.print("Reservation to Cancel/Remove, [0] to Cancel: ");
-	BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
-	int reply;
-	reply = Integer.parseInt(input.readLine());
 	
-	switch(reply){
-	case 0:
-		System.out.println(new String(new char[70]).replace("\0", "\r\n"));
-		Client();
-		break;
-	default:
+	try {
+		
+		System.out.print("Enter Room [Press Enter to Cancel]: ");
+		BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
+		int reply;
+		reply = Integer.parseInt(input.readLine());
+		
 		for(int i = 0; i < globalData.counter; i++) {
 			int temp3 = Integer.parseInt(globalData.database[i][2]);
 			if(reply == temp3) {
 				for(int j = 0; j<8; j++) {
-					globalData.database[i][j] = "";
+					globalData.database[i][j] = "0";
 				}
 			}
 		}
-		break;
+		globalData.vacant++;
+		globalData.reserved--;
 	}
+	catch(NumberFormatException e) {
+		System.out.println(new String(new char[70]).replace("\0", "\r\n"));
+		Client();
+	}
+	
+	
 	Client();
 }
 
