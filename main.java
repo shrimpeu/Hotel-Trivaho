@@ -4,8 +4,9 @@ import java.io.InputStreamReader;
 import java.util.Scanner;
 
 public class main {
+
 class globalData {
-	public static String[][] database = new String [30][7];
+	public static String[][] database = new String [30][8];
 	public static int counter = 0;
 }
 	
@@ -129,10 +130,47 @@ static void AddReservation() throws NumberFormatException, IOException{
 	System.out.print("Enter Duration: ");
 	String Duration = s.nextLine();
 	
+	
+	
+	System.out.println(new String(new char[70]).replace("\0", "\r\n"));
+	System.out.println("-----Bill Information-----");
+	System.out.println("Name: "+Name);
+	System.out.println("No. of Guests: "+GuestNum);
+	System.out.println("Room No.: "+RoomNum);
+	//System.out.println("Room Type: "+RoomType);
+	//System.out.println("Floor: "+Floor);
+	System.out.println("Date In: "+DateIn);
+	System.out.println("Duration (Days): "+Duration);
+	//System.out.println("Amount: "+Cost);
+	
+	System.out.println("Submission: ");
+	System.out.println("[1] Confirm");
+	System.out.println("[2] Reset");
+	System.out.println("[3] Cancel");
+	BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
+	int reply;
+	reply = Integer.parseInt(input.readLine());
+	switch(reply){
+	case 1:
+		System.out.println(new String(new char[70]).replace("\0", "\r\n"));
+		Confirm(Name, GuestNum, RoomNum, DateIn, Duration);
+		break;
+	case 2:
+		System.out.println(new String(new char[70]).replace("\0", "\r\n"));
+		AddReservation();
+		break;
+	case 3:
+		System.out.println(new String(new char[70]).replace("\0", "\r\n"));
+		Client();
+		break;
+	}
+}
+
+static void Confirm(String Name, String GuestNum, String RoomNum, String DateIn, String Duration) throws NumberFormatException, IOException{
+	
 	String Floor = "";
 	String RoomType = "";
 	String Cost = "";
-	
 	int RoomNumInt = Integer.parseInt(RoomNum);
 	if (RoomNumInt >= 1 && RoomNumInt <= 10) {
 		Floor = "1";
@@ -149,25 +187,11 @@ static void AddReservation() throws NumberFormatException, IOException{
 		RoomType = "Upper-Class";
 		Cost = "10000";
 	}
-	System.out.println(new String(new char[70]).replace("\0", "\r\n"));
-	System.out.println("-----Information-----");
-	System.out.println("Name: "+Name);
-	System.out.println("No. of Guests: "+GuestNum);
-	System.out.println("Room No.: "+RoomNum);
-	System.out.println("Room Type: "+RoomType);
-	System.out.println("Floor: "+Floor);
-	System.out.println("Date In: "+DateIn);
-	System.out.println("Duration (Days): "+Duration);
-	
-	System.out.println("Submission: ");
-	System.out.println("[1] Confirm");
-	System.out.println("[2] Clear");
-	System.out.println("[3] Cancel");
-	BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
-	int reply;
-	reply = Integer.parseInt(input.readLine());
 }
 
+static void Clear() throws NumberFormatException, IOException{
+	
+}
 
 static void CancelReservation() throws NumberFormatException, IOException{
 	System.out.println("Cancel Reservation");
@@ -178,6 +202,6 @@ static void CancelReservation() throws NumberFormatException, IOException{
 }
 
 public static void main(String[] args) throws Exception {
-	Home();
-	}
+	  Home();  
+	  }
 }
