@@ -239,48 +239,34 @@ static void Confirm(String Name, String GuestNum, String RoomNum, String DateIn,
 
 
 static void CancelReservation() throws NumberFormatException, IOException{
-	System.out.println("----- Cancel Reservation ----");
-	
-	System.out.println("[1] View Reservations");
-	System.out.println("[2] Go Back");
-	System.out.print("Enter choice: ");
-	BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
-	int reply;
-	reply = Integer.parseInt(input.readLine());
-	
-	switch(reply){
-	case 1:
-		System.out.println(new String(new char[70]).replace("\0", "\r\n"));
-		ViewReservations();
-		break;
-	case 2:
-		System.out.println(new String(new char[70]).replace("\0", "\r\n"));
-		Client();
-		break;
-	}
-}
-
-static void ViewReservations() throws NumberFormatException, IOException{
 	for(int i = 0; i < globalData.counter;i++) {
 		System.out.println("Room: "+globalData.database[i][2]+"\t"+"Name: "+globalData.database[i][0]);
 		System.out.println("");
 	}
 	
-	System.out.print("Room Reservation to Cancel/Remove: ");
+	System.out.print("Reservation to Cancel/Remove, [0] to Cancel: ");
 	BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
 	int reply;
 	reply = Integer.parseInt(input.readLine());
-	for(int i = 0; i < globalData.counter; i++) {
-		int temp3 = Integer.parseInt(globalData.database[i][2]);
-		if(reply == temp3) {
-			for(int j = 0; j<8; j++) {
-				globalData.database[i][j] = "";
+	
+	switch(reply){
+	case 0:
+		System.out.println(new String(new char[70]).replace("\0", "\r\n"));
+		Client();
+		break;
+	default:
+		for(int i = 0; i < globalData.counter; i++) {
+			int temp3 = Integer.parseInt(globalData.database[i][2]);
+			if(reply == temp3) {
+				for(int j = 0; j<8; j++) {
+					globalData.database[i][j] = "";
+				}
 			}
 		}
+		break;
 	}
-	CancelReservation();
+	Client();
 }
-
 
 public static void main(String[] args) throws Exception {
 	  Home();  
